@@ -20,7 +20,7 @@ function addCategory() {
     const category = document.createElement('div');
     category.className = 'category';
     category.innerHTML = `
-        <div class="category-header">
+        <div class="category-header" style="background: linear-gradient(to right, green, red);">
             <h2>Nouvelle Catégorie</h2>
             <div class="category-actions">
                 <span class="rename-category" onclick="renameCategory(this)">✏️</span>
@@ -69,3 +69,41 @@ function drop(event) {
     event.target.appendChild(li);
 }
 
+function addPlayer() {
+    const input = document.getElementById('player-pseudo');
+    const pseudonym = input.value.trim();
+    if (pseudonym !== '') {
+        const outsidePseudonymsList = document.getElementById('draggable');
+        const li = document.createElement('li');
+        li.textContent = pseudonym;
+        li.setAttribute('draggable', 'true');
+        li.setAttribute('ondragstart', 'drag(event)');
+        outsidePseudonymsList.appendChild(li);
+        input.value = '';
+    }
+}
+
+function downloadTierlist() {
+    // Capturer le contenu de la page
+    html2canvas(document.body).then(function(canvas) {
+        // Créer un élément <a> pour le téléchargement
+        const a = document.createElement('a');
+        document.body.appendChild(a);
+        a.style.display = 'none';
+
+        // Convertir le canvas en une URL de données (Data URL)
+        const image = canvas.toDataURL('image/png');
+
+        // Définir l'URL de données comme source de l'élément <a>
+        a.href = image;
+
+        // Spécifier le nom du fichier à télécharger
+        a.download = 'tierlist.png';
+
+        // Simuler un clic sur l'élément <a> pour déclencher le téléchargement
+        a.click();
+
+        // Supprimer l'élément <a> de la page
+        document.body.removeChild(a);
+    });
+}
