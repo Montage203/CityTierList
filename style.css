@@ -1,1 +1,25 @@
 
+/* Ajoutez vos styles CSS ici */
+.category {
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    background-color: #f9f9f9;
+}
+
+.category-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.category-actions {
+    font-size: 20px;
+}
+
+#outside-pseudonyms {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px dashed #ccc;
+    background-color: #f9f9f9;
+}
