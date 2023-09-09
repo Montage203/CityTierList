@@ -7,14 +7,15 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <title>Gestion de Pseudonymes</title>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <title>Gestion de Tierlist</title>
 </head>
 <body>
-    <h1>Gestion de Pseudonymes</h1>
+    <h1>Gestion de Tierlist</h1>
 
     <div id="categories">
-        <!-- Catégories de base -->
-        <div class="category">
+        <!-- Catégories de base avec arrière-plan personnalisable -->
+        <div class="category" style="background: linear-gradient(to right, green, red);">
             <div class="category-header">
                 <h2>Catégorie 1</h2>
                 <div class="category-actions">
@@ -25,51 +26,25 @@
             </div>
             <ul class="pseudonyms" ondrop="drop(event)" ondragover="allowDrop(event)"></ul>
         </div>
-        <div class="category">
-            <div class="category-header">
-                <h2>Catégorie 2</h2>
-                <div class="category-actions">
-                    <span class="rename-category" onclick="renameCategory(this)">✏️</span>
-                    <span class="reorder-category" onclick="reorderCategory(this)">🔃</span>
-                    <span class="delete-category" onclick="deleteCategory(this)">❌</span>
-                </div>
-            </div>
-            <ul class="pseudonyms" ondrop="drop(event)" ondragover="allowDrop(event)"></ul>
-        </div>
-        <div class="category">
-            <div class="category-header">
-                <h2>Catégorie 3</h2>
-                <div class="category-actions">
-                    <span class="rename-category" onclick="renameCategory(this)">✏️</span>
-                    <span class="reorder-category" onclick="reorderCategory(this)">🔃</span>
-                    <span class="delete-category" onclick="deleteCategory(this)">❌</span>
-                </div>
-            </div>
-            <ul class="pseudonyms" ondrop="drop(event)" ondragover="allowDrop(event)"></ul>
-        </div>
-        <div class="category">
-            <div class="category-header">
-                <h2>Catégorie 4</h2>
-                <div class="category-actions">
-                    <span class="rename-category" onclick="renameCategory(this)">✏️</span>
-                    <span class="reorder-category" onclick="reorderCategory(this)">🔃</span>
-                    <span class="delete-category" onclick="deleteCategory(this)">❌</span>
-                </div>
-            </div>
-            <ul class="pseudonyms" ondrop="drop(event)" ondragover="allowDrop(event)"></ul>
-        </div>
+        <!-- Les autres catégories ici... -->
     </div>
 
     <div id="outside-pseudonyms">
         <!-- Liste des pseudonymes en dehors des catégories -->
         <ul class="pseudonyms" id="draggable" draggable="true" ondragstart="drag(event)">
-            <li draggable="false">Pseudo 1</li>
-            <li draggable="false">Pseudo 2</li>
             <!-- Ajoutez d'autres pseudonymes ici... -->
         </ul>
     </div>
 
     <button onclick="addCategory()">Ajouter une Catégorie</button>
+
+    <div id="add-player">
+        <h2>Ajouter un Joueur</h2>
+        <input type="text" id="player-pseudo" placeholder="Pseudo">
+        <button onclick="addPlayer()">Ajouter</button>
+    </div>
+
+    <button onclick="downloadTierlist()">Télécharger la Tierlist</button>
 
     <script src="script.js"></script>
 </body>
