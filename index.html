@@ -10,12 +10,12 @@
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
     <title>Gestion de Tierlist</title>
 </head>
-<body>
+<body class="dark-mode">
     <h1>Gestion de Tierlist</h1>
 
     <div id="categories">
         <!-- Catégories de base -->
-        <div class="category" style="background-color: #f0f0f0;">
+        <div class="category" style="background-color: #333;">
             <div class="category-header">
                 <h2>Catégorie 1</h2>
                 <div class="category-actions">
@@ -49,8 +49,8 @@
 
     <button onclick="downloadTierlist()">Télécharger la Tierlist</button>
 
-    <label for="dark-mode">Mode Sombre</label>
-    <input type="checkbox" id="dark-mode" onchange="toggleDarkMode(this)">
+    <label for="dark-mode-toggle">Mode Sombre</label>
+    <input type="checkbox" id="dark-mode-toggle" onchange="toggleDarkMode(this)">
 
     <script src="script.js"></script>
 </body>
