@@ -14,17 +14,20 @@
     <h1>Gestion de Tierlist</h1>
 
     <div id="categories">
-        <!-- Catégories de base avec arrière-plan personnalisable -->
-        <div class="category" style="background: linear-gradient(to right, green, red);">
+        <!-- Catégories de base -->
+        <div class="category" style="background-color: #f0f0f0;">
             <div class="category-header">
                 <h2>Catégorie 1</h2>
                 <div class="category-actions">
                     <span class="rename-category" onclick="renameCategory(this)">✏️</span>
                     <span class="reorder-category" onclick="reorderCategory(this)">🔃</span>
                     <span class="delete-category" onclick="deleteCategory(this)">❌</span>
+                    <input type="color" class="category-color" onchange="changeCategoryColor(this)">
                 </div>
             </div>
-            <ul class="pseudonyms" ondrop="drop(event)" ondragover="allowDrop(event)"></ul>
+            <ul class="pseudonyms" ondrop="drop(event)" ondragover="allowDrop(event)">
+                <!-- Pseudonymes ici... -->
+            </ul>
         </div>
         <!-- Les autres catégories ici... -->
     </div>
@@ -45,6 +48,9 @@
     </div>
 
     <button onclick="downloadTierlist()">Télécharger la Tierlist</button>
+
+    <label for="dark-mode">Mode Sombre</label>
+    <input type="checkbox" id="dark-mode" onchange="toggleDarkMode(this)">
 
     <script src="script.js"></script>
 </body>
