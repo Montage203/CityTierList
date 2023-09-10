@@ -24,7 +24,7 @@ function addCategory() {
     const category = document.createElement('div');
     category.className = 'category';
     category.innerHTML = `
-        <div class="category-header" style="background-color: #f0f0f0;">
+        <div class="category-header" style="background-color: #333;">
             <h2>Nouvelle Catégorie</h2>
             <div class="category-actions">
                 <span class="rename-category" onclick="renameCategory(this)">✏️</span>
@@ -68,10 +68,13 @@ function drag(event) {
 function drop(event) {
     event.preventDefault();
     const data = event.dataTransfer.getData('text');
-    event.target.appendChild(document.createTextNode(data));
+    const categoryName = event.target.closest('.category').querySelector('h2').textContent;
+    const categoryList = event.target.closest('.category').querySelector('.pseudonyms');
     const li = document.createElement('li');
     li.textContent = data;
-    event.target.appendChild(li);
+    li.setAttribute('draggable', 'true');
+    li.setAttribute('ondragstart', 'drag(event)');
+    categoryList.appendChild(li);
 
     // Appel à l'API pour obtenir l'avatar du joueur
     fetchAvatar(data, li);
