@@ -23,6 +23,8 @@
                     <span class="reorder-category" onclick="reorderCategory(this)">🔃</span>
                     <span class="delete-category" onclick="deleteCategory(this)">❌</span>
                     <input type="color" class="category-color" onchange="changeCategoryColor(this)">
+                    <input type="text" class="add-pseudonym-input" placeholder="Ajouter un pseudo">
+                    <button class="add-pseudonym-button" onclick="addPseudonym(this)">Ajouter</button>
                 </div>
             </div>
             <ul class="pseudonyms" ondrop="drop(event)" ondragover="allowDrop(event)">
@@ -31,27 +33,8 @@
         </div>
         <!-- Les autres catégories ici... -->
     </div>
-
-    <div id="outside-pseudonyms">
-        <!-- Liste des pseudonymes en dehors des catégories -->
-        <ul class="pseudonyms" id="draggable" draggable="true" ondragstart="drag(event)">
-            <!-- Ajoutez d'autres pseudonymes ici... -->
-        </ul>
-    </div>
-
     <button onclick="addCategory()">Ajouter une Catégorie</button>
-
-    <div id="add-player">
-        <h2>Ajouter un Joueur</h2>
-        <input type="text" id="player-pseudo" placeholder="Pseudo">
-        <button onclick="addPlayer()">Ajouter</button>
-    </div>
-
     <button onclick="downloadTierlist()">Télécharger la Tierlist</button>
-
-    <label for="dark-mode-toggle">Mode Sombre</label>
-    <input type="checkbox" id="dark-mode-toggle" onchange="toggleDarkMode(this)">
-
     <script src="script.js"></script>
 </body>
 </html>
