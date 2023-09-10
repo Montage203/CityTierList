@@ -1,70 +1,16 @@
-// Code JavaScript pour gérer les pseudonymes et les catégories
-const categoriesContainer = document.getElementById('categories');
-const outsidePseudonymsContainer = document.getElementById('outside-pseudonyms');
+// Code JavaScript pour gérer les pseudonymes, les catégories et l'avatar
 
-function addPseudonym(button) {
-    const input = button.previousElementSibling;
-    const pseudonym = input.value.trim();
-    if (pseudonym !== '') {
-        const pseudonymsList = button.nextElementSibling;
-        const li = document.createElement('li');
-        li.textContent = pseudonym;
-        li.setAttribute('draggable', 'true');
-        li.setAttribute('ondragstart', 'drag(event)');
-        pseudonymsList.appendChild(li);
-
-        // Appel à l'API pour obtenir l'avatar du joueur
-        fetchAvatar(pseudonym, li);
-
-        input.value = '';
-    }
-}
-
-function addCategory() {
-    const category = document.createElement('div');
-    category.className = 'category';
-    category.innerHTML = `
-        <div class="category-header" style="background-color: #333;">
-            <h2>Nouvelle Catégorie</h2>
-            <div class="category-actions">
-                <span class="rename-category" onclick="renameCategory(this)">✏️</span>
-                <span class="reorder-category" onclick="reorderCategory(this)">🔃</span>
-                <span class="delete-category" onclick="deleteCategory(this)">❌</span>
-                <input type="color" class="category-color" onchange="changeCategoryColor(this)">
-            </div>
-        </div>
-        <ul class="pseudonyms" ondrop="drop(event)" ondragover="allowDrop(event)"></ul>
-    `;
-    categoriesContainer.appendChild(category);
-}
-
-function renameCategory(button) {
-    const categoryHeader = button.parentElement.parentElement;
-    const categoryName = categoryHeader.querySelector('h2');
-    const newCategoryName = prompt('Nouveau nom de catégorie :', categoryName.textContent);
-    if (newCategoryName !== null) {
-        categoryName.textContent = newCategoryName;
-    }
-}
-
-function reorderCategory(button) {
-    const category = button.parentElement.parentElement.parentElement;
-    $(category).sortable();
-}
-
-function deleteCategory(button) {
-    const category = button.parentElement.parentElement.parentElement;
-    category.remove();
-}
-
+// Fonction pour autoriser le glisser-déposer
 function allowDrop(event) {
     event.preventDefault();
 }
 
+// Fonction pour gérer le début du glisser
 function drag(event) {
     event.dataTransfer.setData('text', event.target.textContent);
 }
 
+// Fonction pour gérer la fin du glisser
 function drop(event) {
     event.preventDefault();
     const data = event.dataTransfer.getData('text');
@@ -80,6 +26,7 @@ function drop(event) {
     fetchAvatar(data, li);
 }
 
+// Fonction pour ajouter un joueur
 function addPlayer() {
     const input = document.getElementById('player-pseudo');
     const pseudonym = input.value.trim();
@@ -98,6 +45,7 @@ function addPlayer() {
     }
 }
 
+// Fonction pour basculer le mode sombre
 function toggleDarkMode(checkbox) {
     const body = document.body;
     if (checkbox.checked) {
@@ -107,11 +55,13 @@ function toggleDarkMode(checkbox) {
     }
 }
 
+// Fonction pour changer la couleur de la catégorie
 function changeCategoryColor(input) {
     const categoryHeader = input.parentElement.parentElement;
     categoryHeader.style.backgroundColor = input.value;
 }
 
+// Fonction pour récupérer l'avatar via l'API
 function fetchAvatar(pseudo, element) {
     const user = pseudo;
     const action = 'std';
@@ -127,6 +77,7 @@ function fetchAvatar(pseudo, element) {
     element.appendChild(avatarImage);
 }
 
+// Fonction pour télécharger la tierlist en image
 function downloadTierlist() {
     html2canvas(document.body).then(function(canvas) {
         const a = document.createElement('a');
