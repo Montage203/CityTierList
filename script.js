@@ -15,7 +15,7 @@ function addPseudonym(button) {
 
         // Appel à l'API pour obtenir l'avatar du joueur
         fetchAvatar(pseudonym, li);
-        
+
         input.value = '';
     }
 }
@@ -73,4 +73,66 @@ function drop(event) {
     li.textContent = data;
     event.target.appendChild(li);
 
-    // Appel à l'API pour obtenir l'avatar
+    // Appel à l'API pour obtenir l'avatar du joueur
+    fetchAvatar(data, li);
+}
+
+function addPlayer() {
+    const input = document.getElementById('player-pseudo');
+    const pseudonym = input.value.trim();
+    if (pseudonym !== '') {
+        const outsidePseudonymsList = document.getElementById('draggable');
+        const li = document.createElement('li');
+        li.textContent = pseudonym;
+        li.setAttribute('draggable', 'true');
+        li.setAttribute('ondragstart', 'drag(event)');
+        outsidePseudonymsList.appendChild(li);
+
+        // Appel à l'API pour obtenir l'avatar du joueur
+        fetchAvatar(pseudonym, li);
+
+        input.value = '';
+    }
+}
+
+function toggleDarkMode(checkbox) {
+    const body = document.body;
+    if (checkbox.checked) {
+        body.classList.add('dark-mode');
+    } else {
+        body.classList.remove('dark-mode');
+    }
+}
+
+function changeCategoryColor(input) {
+    const categoryHeader = input.parentElement.parentElement;
+    categoryHeader.style.backgroundColor = input.value;
+}
+
+function fetchAvatar(pseudo, element) {
+    const user = pseudo;
+    const action = 'std';
+    const direction = 3;
+    const headDirection = 3;
+    const gesture = 'std';
+    const size = 'l';
+    const headOnly = 0;
+    const apiUrl = `https://api.habbocity.me/avatar_image.php?user=${user}&action=${action}&direction=${direction}&head_direction=${headDirection}&gesture=${gesture}&size=${size}&headonly=${headOnly}`;
+    const avatarImage = document.createElement('img');
+    avatarImage.src = apiUrl;
+    avatarImage.alt = `${pseudo}'s Avatar`;
+    element.appendChild(avatarImage);
+}
+
+function downloadTierlist() {
+    html2canvas(document.body).then(function(canvas) {
+        const a = document.createElement('a');
+        document.body.appendChild(a);
+        a.style.display = 'none';
+        const image = canvas.toDataURL('image/png');
+        a.href = image;
+        a.download = 'tierlist.png';
+        a.click();
+        document.body.removeChild(a);
+    });
+}
