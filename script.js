@@ -1,4 +1,4 @@
-// Code JavaScript pour gérer les éléments, les catégories, le thème sombre et l'avatar
+// Code JavaScript pour gérer les éléments, les catégories et l'avatar
 
 // Fonction pour autoriser le glisser-déposer
 function allowDrop(event) {
@@ -10,19 +10,21 @@ function drag(event) {
     event.dataTransfer.setData('text', event.target.textContent);
 }
 
-// Fonction pour gérer la fin du glisser
+// Fonction pour gérer le fin du glisser
 function drop(event) {
     event.preventDefault();
     const data = event.dataTransfer.getData('text');
     const categoryName = event.target.closest('.category').querySelector('h2').textContent;
     const categoryList = event.target.closest('.category').querySelector('.elements');
 
-    // Créer un conteneur pour l'avatar et le nom d'utilisateur
+    // Récupérer l'avatar en utilisant l'API
+    const avatarUrl = `https://api.habbocity.me/avatar_image.php?user=${data}&action=std&direction=3&head_direction=3&size=l&headonly=0`;
+
+    // Créer un conteneur pour l'avatar, le nom d'utilisateur et le bouton de suppression
     const container = document.createElement('div');
     container.className = 'avatar-container';
 
-    // Récupérer l'avatar en utilisant l'API
-    const avatarUrl = `https://api.habbocity.me/avatar_image.php?user=${data}&action=std&direction=3&head_direction=3&size=l&headonly=0`;
+    // Créer une image pour l'avatar
     const avatarImg = document.createElement('img');
     avatarImg.src = avatarUrl;
     avatarImg.alt = `${data}'s Avatar`;
@@ -31,9 +33,17 @@ function drop(event) {
     const usernamePara = document.createElement('p');
     usernamePara.textContent = data;
 
-    // Ajouter l'avatar et le nom d'utilisateur au conteneur
+    // Créer un bouton de suppression
+    const removeButton = document.createElement('button');
+    removeButton.textContent = 'Supprimer';
+    removeButton.onclick = function() {
+        removePseudo(this);
+    };
+
+    // Ajouter l'avatar, le nom d'utilisateur et le bouton de suppression au conteneur
     container.appendChild(avatarImg);
     container.appendChild(usernamePara);
+    container.appendChild(removeButton);
 
     // Ajouter le conteneur à la liste de catégories
     const li = document.createElement('li');
@@ -108,6 +118,12 @@ function addElement(button) {
     }
 }
 
+// Fonction pour supprimer un pseudo d'une catégorie
+function removePseudo(button) {
+    const pseudoContainer = button.parentElement;
+    pseudoContainer.remove();
+}
+
 // Fonction pour télécharger la tierlist en image
 function downloadTierlist() {
     html2canvas(document.body).then(function(canvas) {
@@ -120,16 +136,6 @@ function downloadTierlist() {
         a.click();
         document.body.removeChild(a);
     });
-}
-
-// Fonction pour basculer le mode sombre
-function toggleDarkMode(checkbox) {
-    const body = document.body;
-    if (checkbox.checked) {
-        body.classList.add('dark-mode');
-    } else {
-        body.classList.remove('dark-mode');
-    }
 }
 
 // Fonction pour récupérer l'avatar via l'API
