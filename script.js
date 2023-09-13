@@ -36,7 +36,7 @@ function drop(event) {
     // Créer un bouton de suppression
     const removeButton = document.createElement('button');
     removeButton.textContent = 'Supprimer';
-    removeButton.onclick = function() {
+    removeButton.onclick = function () {
         removePseudo(this);
     };
 
@@ -126,11 +126,11 @@ function removePseudo(button) {
 
 // Fonction pour télécharger la tierlist en image
 function downloadTierlist() {
-    html2canvas(document.body).then(function(canvas) {
+    html2canvas(document.body).then(function (canvas) {
         const a = document.createElement('a');
         document.body.appendChild(a);
         a.style.display = 'none';
-        const image = canvas.toDataURL('image/png');
+        const image = canvas.toDataURL('image/png').replace("image/png", "image/octet-stream");
         a.href = image;
         a.download = 'tierlist.png';
         a.click();
