@@ -41,7 +41,10 @@ function addCategory() {
             </div>
 <ul class="elements" ondrop="drop(event)" ondragover="allowDrop(event)">
             <!-- Éléments ici... -->
-        </ul>
+        
+<div class="elements" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <!-- Éléments ici... -->
+        </div></ul>
         </div>
         
     `;
