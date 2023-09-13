@@ -39,10 +39,11 @@ function addCategory() {
                 <input type="text" class="add-element-input" placeholder="Ajouter un élément">
                 <button class="add-element-button" onclick="addElement(this)">Ajouter</button>
             </div>
-        </div>
-        <ul class="elements" ondrop="drop(event)" ondragover="allowDrop(event)">
+<ul class="elements" ondrop="drop(event)" ondragover="allowDrop(event)">
             <!-- Éléments ici... -->
         </ul>
+        </div>
+        
     `;
     categoriesContainer.appendChild(category);
 }
