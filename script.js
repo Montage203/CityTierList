@@ -1,21 +1,5 @@
 // Code JavaScript pour gérer les éléments, les catégories et l'avatar
 
-// Fonction pour autoriser le glisser-déposer
-function allowDrop(event) {
-    event.preventDefault();
-}
-
-// Fonction pour gérer le début du glisser
-function drag(event) {
-    event.dataTransfer.setData('text', event.target.textContent);
-}
-
-// Fonction pour gérer le fin du glisser
-function drop(event) {
-    event.preventDefault();
-    const data = event.dataTransfer.getData('text');
-    const categoryName = event.target.closest('.category').querySelector('h2').textContent;
-    const categoryList = event.target.closest('.category').querySelector('.elements');
 
     // Récupérer l'avatar en utilisant l'API
     const avatarUrl = `https://api.habbocity.me/avatar_image.php?user=${data}&action=std&direction=3&head_direction=3&size=l&headonly=0`;
