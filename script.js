@@ -43,9 +43,7 @@ function addCategory() {
             <!-- Éléments ici... -->
         
  </ul>
-<img src="https://api.habbocity.me/avatar_image.php?user=<div class="elements" ondrop="drop(event)" ondragover="allowDrop(event)">
-            <!-- Éléments ici... -->
-        </div>&action=wlk&direction=3&head_direction=3&gesture=sml&size=n&headonly=0" alt="Avatar de Niko">
+<img src="https://api.habbocity.me/avatar_image.php?user=Niko&action=wlk&direction=3&head_direction=3&gesture=sml&size=n&headonly=0" alt="Avatar de Niko">
         </div>
         
     `;
