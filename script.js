@@ -16,10 +16,28 @@ function drop(event) {
     const data = event.dataTransfer.getData('text');
     const categoryName = event.target.closest('.category').querySelector('h2').textContent;
     const categoryList = event.target.closest('.category').querySelector('.elements');
+
+    // Créer un conteneur pour l'avatar et le nom d'utilisateur
+    const container = document.createElement('div');
+    container.className = 'avatar-container';
+
+    // Récupérer l'avatar en utilisant l'API
+    const avatarUrl = `https://api.habbocity.me/avatar_image.php?user=${data}&action=std&direction=3&head_direction=3&size=l&headonly=0`;
+    const avatarImg = document.createElement('img');
+    avatarImg.src = avatarUrl;
+    avatarImg.alt = `${data}'s Avatar`;
+
+    // Créer un paragraphe pour le nom d'utilisateur
+    const usernamePara = document.createElement('p');
+    usernamePara.textContent = data;
+
+    // Ajouter l'avatar et le nom d'utilisateur au conteneur
+    container.appendChild(avatarImg);
+    container.appendChild(usernamePara);
+
+    // Ajouter le conteneur à la liste de catégories
     const li = document.createElement('li');
-    li.textContent = data;
-    li.setAttribute('draggable', 'true');
-    li.setAttribute('ondragstart', 'drag(event)');
+    li.appendChild(container);
     categoryList.appendChild(li);
 }
 
@@ -39,13 +57,10 @@ function addCategory() {
                 <input type="text" class="add-element-input" placeholder="Ajouter un élément">
                 <button class="add-element-button" onclick="addElement(this)">Ajouter</button>
             </div>
-<ul class="elements" ondrop="drop(event)" ondragover="allowDrop(event)">
-            <!-- Éléments ici... -->
-        
- </ul>
-<img src="https://api.habbocity.me/avatar_image.php?user=Niko&action=wlk&direction=3&head_direction=3&gesture=sml&size=n&headonly=0" alt="Avatar de Niko">
+            <ul class="elements" ondrop="drop(event)" ondragover="allowDrop(event)">
+                <!-- Éléments ici... -->
+            </ul>
         </div>
-        
     `;
     categoriesContainer.appendChild(category);
 }
