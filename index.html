@@ -6,27 +6,11 @@
     <link rel="stylesheet" href="styles.css">
     <title>CityTierlist</title>
 </head>
-<body class="dark-mode">
+<body>
     <h1>City Tierlist</h1>
 
     <div id="categories">
-        <!-- Catégories de base -->
-        <div class="category" style="background-color: #333;">
-            <div class="category-header">
-                <h2>Catégorie 1</h2>
-                <div class="category-actions">
-                    <span class="rename-category" onclick="renameCategory(this)">✏️</span>
-                    <span class="reorder-category" onclick="reorderCategory(this)">🔃</span>
-                    <span class="delete-category" onclick="deleteCategory(this)">❌</span>
-                    <input type="color" class="category-color" onchange="changeCategoryColor(this)">
-                    <input type="text" class="add-element-input" placeholder="Ajouter un élément">
-                    <button class="add-element-button" onclick="addElement(this)">Ajouter</button>
-                </div>
-            </div>
-            <ul class="elements" ondrop="drop(event)" ondragover="allowDrop(event)">
-                <!-- Éléments ici... -->
-            </ul>
-        </div>
+     
         <!-- Les autres catégories ici... -->
     </div>
     <button onclick="addCategory()">Ajouter une Catégorie</button>
